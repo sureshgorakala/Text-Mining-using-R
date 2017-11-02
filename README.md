@@ -13,6 +13,15 @@ BEfore running on Windows I had some setup to do:
 * Install RStudio from https://www.rstudio.com/products/rstudio/download/
 * Create a Twitter App to collect the data at https://apps.twitter.com/app/new - more details [Twitter Analytics Using R Part 1: Extract Tweets](https://www.credera.com/blog/business-intelligence/twitter-analytics-using-r-part-1-extract-tweets/)
 
+the values from the Twitter app need to go into these lines in "Topic Modelling":
+
+```R
+Consumer_key<- ""
+Consumer_secret <- ""
+access_token <- ""
+access_token_secret <- ""
+```
+
 Then in the console make sure all the packages required are installed (this is in the script "prereqs.R"):
 
 ```R
@@ -23,3 +32,14 @@ install.packages("slam")
 install.packages("topicmodels")
 install.packages('base64enc')
 ```
+Now you are ready to run "Topic Modelling" in RStudio! There are two lines near the head of the file that can be used to tweak the number and type of of results:
+
+```R
+numTweets <- 900
+
+tweetData <- searchTwitter("flight", n=numTweets, lang="en")
+```
+
+numTweets is used in the twitter search and later in to set the SEED for the analysis algorithm.
+
+tweetData holds the data that we want to analyse. Here I have done a simple search for the text "flight" in English. See [Getting Data via twitteR](https://sites.google.com/site/miningtwitter/basics/getting-data/by-twitter) for more ideas. 
