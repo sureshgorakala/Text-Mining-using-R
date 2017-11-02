@@ -1,0 +1,6 @@
+install.packages('twitteR')
+install.packages("tm")
+install.packages("wordcloud")
+install.packages("slam")
+install.packages("topicmodels")
+install.packages('base64enc')
