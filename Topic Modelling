@@ -1,11 +1,24 @@
+library("twitteR")
 library("tm")
 library("wordcloud")
 library("slam")
 library("topicmodels")
 
+Consumer_key<- ""
+Consumer_secret <- ""
+access_token <- ""
+access_token_secret <- ""
+setup_twitter_oauth(Consumer_key,Consumer_secret,access_token,access_token_secret)
+
+numTweets <- 900
+
+tweetData <- searchTwitter("flight", n=numTweets, lang="en")
+write.csv(twListToDF(tweetData), file="tweets.csv")
+
 #Load Text
-con <- file("tweets.txt", "rt")
+con <- file("tweets.csv", "rt")
 tweets = readLines(con)
+#
 
 #Clean Text
 tweets = gsub("(RT|via)((?:\\b\\W*@\\w+)+)","",tweets)
@@ -36,7 +49,7 @@ best.model.logLik <- as.data.frame(as.matrix(lapply(best.model, logLik)))
 
 #calculating LDA
 k = 50;#number of topics
-SEED = 786; # number of tweets used
+SEED = numTweets; # number of tweets used
 CSC_TM <-list(VEM = LDA(tdm, k = k, control = list(seed = SEED)),VEM_fixed = LDA(tdm, k = k,control = list(estimate.alpha = FALSE, seed = SEED)),Gibbs = LDA(tdm, k = k, method = "Gibbs",control = list(seed = SEED, burnin = 1000,thin = 100, iter = 1000)),CTM = CTM(tdm, k = k,control = list(seed = SEED,var = list(tol = 10^-4), em = list(tol = 10^-3))))
 
 #To compare the fitted models we first investigate the values of the models fitted with VEM and estimated and with VEM and fixed 
