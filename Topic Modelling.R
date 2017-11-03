@@ -3,6 +3,7 @@ library("tm")
 library("wordcloud")
 library("slam")
 library("topicmodels")
+library("readr")
 
 Consumer_key<- ""
 Consumer_secret <- ""
