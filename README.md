@@ -16,10 +16,10 @@ BEfore running on Windows I had some setup to do:
 the values from the Twitter app need to go into these lines in "Topic Modelling":
 
 ```R
-Consumer_key<- ""
-Consumer_secret <- ""
-access_token <- ""
-access_token_secret <- ""
+Consumer_key<- "YOUR_CONSUMER_KEY"
+Consumer_secret <- "YOUR_CONSUMER_SECRET"
+access_token <- "YOUR_ACCESS_TOKEN"
+access_token_secret <- "YOUR_TOKEN_SECRET"
 ```
 
 Then in the console make sure all the packages required are installed (this is in the script "prereqs.R"):
