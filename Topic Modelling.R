@@ -5,10 +5,13 @@ library("slam")
 library("topicmodels")
 library("readr")
 
-Consumer_key<- ""
-Consumer_secret <- ""
-access_token <- ""
-access_token_secret <- ""
+#Connect to Twitter
+# For guidance on creating an app see 
+#  https://www.credera.com/blog/business-intelligence/twitter-analytics-using-r-part-1-extract-tweets/
+Consumer_key<- "YOUR_CONSUMER_KEY"
+Consumer_secret <- "YOUR_CONSUMER_SECRET"
+access_token <- "YOUR_ACCESS_TOKEN"
+access_token_secret <- "YOUR_TOKEN_SECRET"
 setup_twitter_oauth(Consumer_key,Consumer_secret,access_token,access_token_secret)
 
 numTweets <- 900
@@ -47,9 +50,9 @@ summary(term_tfidf)
 tdm <- tdm[,term_tfidf >= 0.1]
 tdm <- tdm[row_sums(tdm) > 0,]
 
-dtm <- as.DocumentTermMatrix(tdm)
-
-
-lda <- LDA(dtm, k = 8) # find 8 topics
+#Perform the topic modelling and save summary
+#Further info on LDA here http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation/
+lda <- LDA(tdm, k = 8) # find 8 topics
 Terms <- terms(lda, 10) # first 4 terms of every topic
 Terms
+write.csv(Terms, file = "Terms.csv")
