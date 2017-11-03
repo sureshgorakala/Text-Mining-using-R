@@ -42,4 +42,4 @@ tweetData <- searchTwitter("flight", n=numTweets, lang="en")
 
 numTweets is used in the twitter search and later in to set the SEED for the analysis algorithm.
 
-tweetData holds the data that we want to analyse. Here I have done a simple search for the text "flight" in English. See [Getting Data via twitteR](https://sites.google.com/site/miningtwitter/basics/getting-data/by-twitter) for more ideas. 
+tweetData holds the data that we want to analyse. Here I have done a simple search for the text "flight" in English. See [Getting Data via twitteR](https://sites.google.com/site/miningtwitter/basics/getting-data/by-twitter) for more ideas. Look in "topic-exploration.R" and "Sentiment.R" for more ways to look at the data downloaded in "Topic Modelling.R"
