@@ -12,12 +12,13 @@ setup_twitter_oauth(Consumer_key,Consumer_secret,access_token,access_token_secre
 
 numTweets <- 900
 
+#get data set and save for later, e.g. to investigate anomalies 
 tweetData <- searchTwitter("flight", n=numTweets, lang="en")
 write.csv(twListToDF(tweetData), file="tweets.csv")
 
 #Load Text
-con <- file("tweets.csv", "rt")
-tweets = readLines(con)
+dataset <- read_csv("tweets.csv")
+tweets <- dataset$text
 #
 
 #Clean Text
