@@ -41,6 +41,7 @@ corpus = tm_map(corpus,removeWords, c("iphone","android","web", "tweetdeck", "if
 tdm = DocumentTermMatrix(corpus) # Creating a Term document Matrix
 
 # create tf-idf matrix
+# see http://tidytextmining.com/tfidf.html for the theory
 term_tfidf <- tapply(tdm$v/row_sums(tdm)[tdm$i], tdm$j, mean) * log2(nDocs(tdm)/col_sums(tdm > 0))
 summary(term_tfidf)
 tdm <- tdm[,term_tfidf >= 0.1]
